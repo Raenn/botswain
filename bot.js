@@ -40,12 +40,11 @@ client.on('messageCreate', interaction => {
 					} else if (diceCount > 10) {
 						interaction.reply('Arr, why I can\'t I hold all these dice?!');
 					} else {
-						var response = ""
-						for (var i = 0; i < diceCount; i++) {
-							var index = Math.floor(Math.random() * 6)
-							response += emoji[index]
-						}
-
+						var response = Array(diceCount).fill(0)
+							.map(x => Math.floor(Math.random() * 6))
+							.sort()
+							.map(x => emoji[x])
+							.join('');
 						interaction.reply(response);
 					}
 				}
